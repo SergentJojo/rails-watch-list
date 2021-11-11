@@ -1,0 +1,33 @@
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/featured/?<%= @list.name.split(" ").join("%20") %>)">
+    <h1><%= @list.name %></h1>
+</div>
+
+<div class="container">
+
+  <% @list.bookmarks.each do |bookmark| %>
+    <div class="card-product">
+      <div class="card-product-infos d-flex align-items-center">
+        <img src="<%= bookmark.movie.poster_url %>" />
+        <div>
+          <h2><%= bookmark.movie.title %></h2>
+          <p><%= bookmark.movie.overview %></p>
+          <p>Rating: <%= bookmark.movie.rating %>/10</p>
+        </div>
+        <div>
+          <%= link_to "Delete bookmark", bookmark_path(bookmark), method: :delete  %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%#
+ create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.text "overview"
+    t.string "poster_url"
+    t.float "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end %>
