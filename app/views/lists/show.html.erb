@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/featured/?<%= @list.name.split(" ").join("%20") %>)">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @list.photo.key, crop: :fill %>)">
       <h1><%= @list.name %></h1>
   </div>
 
