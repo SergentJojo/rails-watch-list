@@ -10,30 +10,28 @@ require 'open-uri'
 
 p "starts seeding"
 
-
-# Movie.destroy_all
+Movie.destroy_all
 List.destroy_all
 
-
-element_id = (1..1000).to_a
+# element_id = (1..1000).to_a
 i = 0
 
-10.times do
+20.times do
   # movie_url = URI.open("https://api.themoviedb.org/3/movie/#{element_id[i]}?api_key=c6b58876d59c3e77ec323ddd2f6d858c").read
-  # movie_url = URI.open("http://tmdb.lewagon.com/movie/top_rated").read
-  # movie = JSON.parse(movie_url)
+  movie_url = URI.open("http://tmdb.lewagon.com/movie/top_rated").read
+  movie = JSON.parse(movie_url)
 
-  # Movie.create!(
-  #   title: movie["results"][i]["original_title"],
-  #   overview: movie["results"][i]["overview"],
-  #   poster_url: "https://www.themoviedb.org/t/p/w1280/#{movie["results"][i]["poster_path"]}",
-  #   rating: movie["results"][i]["vote_average"]
-  # )
+  Movie.create!(
+    title: movie["results"][i]["original_title"],
+    overview: movie["results"][i]["overview"],
+    poster_url: "https://www.themoviedb.org/t/p/w1280/#{movie["results"][i]["poster_path"]}",
+    rating: movie["results"][i]["vote_average"]
+  )
 
-  list_url = URI.open("https://api.themoviedb.org/3/list/#{element_id[i]}?api_key=c6b58876d59c3e77ec323ddd2f6d858c&language=en-US").read
-  list = JSON.parse(list_url)
+  # list_url = URI.open("https://api.themoviedb.org/3/list/#{element_id[i]}?api_key=c6b58876d59c3e77ec323ddd2f6d858c&language=en-US").read
+  # list = JSON.parse(list_url)
 
-  List.create!(name: list["name"])
+  # List.create!(name: list["name"])
 
   i += 1
 end
