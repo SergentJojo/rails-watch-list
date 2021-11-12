@@ -21,12 +21,16 @@
   </div>
 
   <div class="container">
-    <h2>Add a movie</h2>
+    <button class="btn btn-ghost" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+      Create a bookmark
+    </button>
+  <div class="collapse show" id="collapseExample">
     <%= simple_form_for([@list, @bookmark]) do |f| %>
       <%= f.association :movie %>
-      <%= f.input :comment %>
-      <%= f.submit class:"btn btn-flat" %>
+      <%= f.input :comment, hint: 'Minimum is 6 characters'  %>
+      <%= f.submit "Add a movie", class:"btn btn-flat" %>
     <% end %>
+  </div>
 
     <div class="cards">
       <% @list.bookmarks.each do |bookmark| %>
@@ -45,8 +49,6 @@
         </div>
       <% end %>
     </div>
-
-
   </div>
 
   <div class="footer">
